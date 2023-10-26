@@ -24,5 +24,6 @@ Route::get('/product-details/{id}', [HomeController::class, 'product_details']);
 Route::permanentRedirect('/product-details/', '/');// redirect to home if blank product id 
 Route::get('/about', [HomeController::class, 'about']);
 Route::match(['get', 'post'], '/contact-us', [HomeController::class, 'contact_us']);
+
 Route::match(['get', 'post'], '/login', [HomeController::class, 'login']);
 Route::match(['get', 'post'], '/signup', [HomeController::class, 'signup']);

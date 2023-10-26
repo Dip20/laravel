@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2023 at 09:54 PM
+-- Generation Time: Oct 26, 2023 at 11:27 PM
 -- Server version: 11.1.0-MariaDB
 -- PHP Version: 8.2.4
 
@@ -238,12 +238,26 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `img` longtext NOT NULL DEFAULT '',
+  `is_deleted` int(11) NOT NULL DEFAULT 0,
+  `is_active` int(11) NOT NULL DEFAULT 0,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `mobile`, `img`, `is_deleted`, `is_active`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'dip sarkar', 'info.dip.sarkar@gmail.com', NULL, '', 0, 0, NULL, '$2y$10$ywpk4ntv8z7.dnPH3phwYOBdhs0FXhcWSG7wy/fA3TSasSyLerQ0e', NULL, '2023-10-26 15:19:56', NULL),
+(2, 'Santu Sarkar', 'santusarkar2020@gmail.com', NULL, '', 0, 0, NULL, '$2y$10$j4G8EYpRsNj6DOR5PkdF8uSTEMYwdBhGxbYnDUkoZv4.6qeBV5hZ2', NULL, '2023-10-26 15:23:38', NULL),
+(3, 'Santu Sarkar', 'sasass@gmail.com', NULL, '', 0, 0, NULL, '$2y$10$Mg97BEGhgG2RF/4RYpIheevoDo6GieSEQhjpRS44stHBurlmiU3EC', NULL, '2023-10-26 15:26:22', NULL),
+(4, 'Santu Sarkar', 'sasas5s@gmail.com', NULL, '', 0, 0, NULL, '$2y$10$ezxFAgvUiZC7gqjYJGc51OLLxLIKLQ7UrSXlxKbj/m0buD1awOR5.', NULL, '2023-10-26 15:40:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -328,8 +342,7 @@ ALTER TABLE `sliders`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -387,7 +400,7 @@ ALTER TABLE `sliders`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

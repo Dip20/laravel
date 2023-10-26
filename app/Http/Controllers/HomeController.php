@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\HomeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+
+    function __construct()
+    {
+        $this->model = new HomeModel();
+    }
+
     public function index()
     {
         /**
@@ -71,8 +78,7 @@ class HomeController extends Controller
         $post = $request->all();
         if (!empty($post)) {
 
-            $model = new HomeModel();
-            $status = $model->contact_us($post);
+            $status = $this->model->contact_us($post);
 
             echo '<pre>';
             print_r($status);
@@ -83,15 +89,28 @@ class HomeController extends Controller
 
     public function login(Request $request)
     {
+        $credentials = $request->only('email', 'password');
         $post = $request->all();
         if (!empty($post)) {
+            $validated = $request->validate([
+                'email' => 'required|max:40|min:3',
+                'password' => 'required|max:10|min:6|',
+            ]);
 
-            $model = new HomeModel();
-            $status = $model->login($post);
+            if (Auth::attempt($credentials)) {
+                // password & email has matched so now et session
+                $user_data =  DB::table('users')->select('id as user_id', 'name', 'email', 'mobile', 'img')
+                    ->where('email', $post['email'])
+                    ->where('is_deleted', '0')
+                    ->first();
 
-            echo '<pre>';
-            print_r($status);
-            die();
+                $session['user_data'] = $user_data;
+                $session['user_data']->is_logged_in = true;
+                $session['user_data']->logged_time = time();
+                session($session);
+                return redirect()->intended('/dashboard');
+            }
+            return back()->with(['st' => 'failed', 'msg' => 'Invalid login credentials']);
         }
         return view('frontend.login', ['title' => 'Login']);
     }
@@ -99,13 +118,15 @@ class HomeController extends Controller
     {
         $post = $request->all();
         if (!empty($post)) {
+            $validated = $request->validate([
+                'name' => 'required|max:20|min:3',
+                'email' => 'required|unique:users|max:40|min:3',
+                'password' => 'required|max:10|min:6|',
+                'confirm_password' => 'required|max:10|min:6|same:password',
+            ]);
 
-            $model = new HomeModel();
-            $status = $model->signup($post);
-
-            echo '<pre>';
-            print_r($status);
-            die();
+            $status = $this->model->signup($post);
+            return redirect('signup')->with($status);
         }
         return view('frontend.signup', ['title' => 'Signup']);
     }
