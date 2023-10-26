@@ -21,12 +21,12 @@
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4 ml-md-5">
-                        <h2 class="ftco-heading-2">Menu</h2>
+                        <h2 class="ftco-heading-2">Quick Links</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Shop</a></li>
-                            <li><a href="#" class="py-2 d-block">About</a></li>
-                            <li><a href="#" class="py-2 d-block">Journal</a></li>
-                            <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+                            <li><a href="<?= url('about') ?>" class="py-2 d-block">About</a></li>
+                            <li><a href="<?= url('contact-us') ?>" class="py-2 d-block">Contact Us</a></li>
+                            <li><a href="<?= url('login') ?>" class="py-2 d-block">Login</a></li>
+                            <li><a href="<?= url('signup') ?>" class="py-2 d-block">Signup</a></li>
                         </ul>
                     </div>
                 </div>
@@ -39,10 +39,7 @@
                                 <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
                                 <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
                                 <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
-                            </ul>
-                            <ul class="list-unstyled">
                                 <li><a href="#" class="py-2 d-block">FAQs</a></li>
-                                <li><a href="#" class="py-2 d-block">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,12 +59,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p>
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </script> All rights reserved Design & Developed <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://github.com/dip20" target="_blank">Santu Sarkar</a>
                     </p>
                 </div>
             </div>
